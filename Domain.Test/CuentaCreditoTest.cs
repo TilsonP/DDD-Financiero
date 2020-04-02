@@ -15,7 +15,7 @@ namespace Domain.Test
         public void CrearCuentaCreditoTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Credito");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10003";
             cuenta.Nombre = "Corriente Ejemplo";
             cuenta.Ciudad = "Valledupar";
             Assert.AreEqual(1000000, cuenta.Saldo);
@@ -25,7 +25,7 @@ namespace Domain.Test
         public void AbonarCuentaCreditoTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Credito");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10003";
             cuenta.Nombre = "Corriente Ejemplo";
             cuenta.Ciudad = "Valledupar";            
             cuenta.Retirar(new Transaccion(200000));
@@ -37,7 +37,7 @@ namespace Domain.Test
         public void AvanceCuentaCreditoTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Credito");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10003";
             cuenta.Nombre = "Corriente Ejemplo";
             cuenta.Ciudad = "Valledupar";
             cuenta.Retirar(new Transaccion(300000));

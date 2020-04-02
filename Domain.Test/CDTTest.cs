@@ -17,9 +17,9 @@ namespace Domain.Test
         public void ConsignarDepositoTest()
         {
             var cdt = new CDT();
-            cdt.Numero = "111";
+            cdt.Numero = "10004";
             cdt.Nombre = "Ahorro Ejemplo";
-            cdt.Periodo = 5;
+            cdt.Periodo = 3;
             cdt.TasaInteres = 0.06;
             cdt.Consignar(new Transaccion(1000000, "Valledupar"));
             Assert.AreEqual(1000000, cdt.Saldo);
@@ -29,9 +29,9 @@ namespace Domain.Test
         public void TransferirDepositoTest()
         {
             var cdt = new CDT();
-            cdt.Numero = "111";
+            cdt.Numero = "10004";
             cdt.Nombre = "Ahorro Ejemplo";
-            cdt.Periodo = 5;
+            cdt.Periodo = 3;
             cdt.TasaInteres = 0.06;
             cdt.Consignar(new Transaccion(1000000, "Valledupar"));
             cdt.Trasladar(new CuentaAhorro(), new Transaccion(1000000, "Valledupar"));
@@ -42,9 +42,9 @@ namespace Domain.Test
         public void RetirarDepositoTest()
         {
             var cdt = new CDT();
-            cdt.Numero = "111";
+            cdt.Numero = "10004";
             cdt.Nombre = "Ahorro Ejemplo";
-            cdt.Periodo = 5;
+            cdt.Periodo = 3;
             cdt.TasaInteres = 0.06;
             cdt.Consignar(new Transaccion(1000000, "Valledupar"));
             cdt.Retirar(new Transaccion(1000000));

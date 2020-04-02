@@ -15,7 +15,7 @@ namespace Domain.Test
         public void CrearCuentaDeAhorroTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Ahorro");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10001";
             cuenta.Nombre = "Ahorro Ejemplo";
             cuenta.Ciudad = "Valledupar";
             cuenta.Consignar(new Transaccion(50000, "Valledupar"));
@@ -26,7 +26,7 @@ namespace Domain.Test
         public void ConsignarCuentaDeAhorroTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Ahorro");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10001";
             cuenta.Nombre = "Ahorro Ejemplo";
             cuenta.Ciudad = "Valledupar";
             cuenta.Consignar(new Transaccion(50000, "Valledupar"));
@@ -39,7 +39,7 @@ namespace Domain.Test
         public void RetirarCuentaDeAhorroTest()
         {
             var cuenta = new CuentaBancariaFactory().Create("Ahorro");
-            cuenta.Numero = "111";
+            cuenta.Numero = "10001";
             cuenta.Nombre = "Ahorro Ejemplo";
             cuenta.Ciudad = "Valledupar";
             cuenta.Consignar(new Transaccion(50000, "Valledupar"));
