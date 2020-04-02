@@ -41,13 +41,6 @@ namespace Domain.Entities
 
         private bool VerificarPeriodo()
         {
-            /*var fechaDeposito = Movimientos[0].FechaMovimiento;
-            var fechaActual = DateTime.Now;
-
-            var diferencia = (fechaActual.Month - fechaDeposito.Month) + (12*(fechaActual.Year - fechaDeposito.Year));
-
-            if (diferencia >= Periodo) return true;
-            return false;*/
             return true;
         }
 

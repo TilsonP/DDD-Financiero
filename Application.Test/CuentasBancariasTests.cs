@@ -12,10 +12,6 @@ namespace Application.Test
         [SetUp]
         public void Setup()
         {
-            /*var optionsSqlServer = new DbContextOptionsBuilder<BancoContext>()
-             .UseSqlServer("Server=.\\;Database=Banco;Trusted_Connection=True;MultipleActiveResultSets=true")
-             .Options;*/
-
             var optionsInMemory = new DbContextOptionsBuilder<BancoContext>().UseInMemoryDatabase("Banco").Options;
 
             _context = new BancoContext(optionsInMemory);            
@@ -26,23 +22,21 @@ namespace Application.Test
         [Test]
         public void CrearCuentaAhorroTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1113", Nombre = "aaaaa", TipoCuenta = "Ahorro" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10001", Nombre = "Cuenta ejemplo", TipoCuenta = "Ahorro" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
-            Assert.AreEqual("Se creó con exito la cuenta 1113.", createResponse.Mensaje);
+            Assert.AreEqual("Se creó con exito la cuenta 10001.", createResponse.Mensaje);
         }
 
         [Test]
         public void ConsignarCuentaAhorroTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1113", Nombre = "aaaaa", TipoCuenta = "Ahorro" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10001", Nombre = "Cuenta ejemplo", TipoCuenta = "Ahorro" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
-            //Consignacion
+            
             ConsignarService _consignarService = new ConsignarService(new UnitOfWork(_context));
-            var consignarRequest = new ConsignarRequest { NumeroCuenta = "1113", Ciudad = "Valledupar", Valor = 100000 };            
+            var consignarRequest = new ConsignarRequest { NumeroCuenta = "10001", Ciudad = "Cuenta ejemplo", Valor = 100000 };            
             var consignarResponse = _consignarService.Ejecutar(consignarRequest);
             Assert.AreEqual($"Su Nuevo saldo es {consignarRequest.Valor}.", consignarResponse.Mensaje);                        
         }
@@ -50,24 +44,17 @@ namespace Application.Test
         [Test]
         public void RetirarCuentaAhorroTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1113", Nombre = "aaaaa", TipoCuenta = "Ahorro" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10001", Nombre = "Cuenta ejemplo", TipoCuenta = "Ahorro" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
-
              _createService.Ejecutar(createRequest);
 
-            //Consignacion
             ConsignarService _consignarService = new ConsignarService(new UnitOfWork(_context));
-            var consignarRequest = new ConsignarRequest { NumeroCuenta = "1113", Ciudad = "Valledupar", Valor = 100000 };
-
+            var consignarRequest = new ConsignarRequest { NumeroCuenta = "10001", Ciudad = "Valledupar", Valor = 100000 };
             _consignarService.Ejecutar(consignarRequest);
 
-            //Retiro
             RetirarService _retirarService = new RetirarService(new UnitOfWork(_context));
-            var retirarRequest = new RetirarRequest { NumeroCuenta = "1113", Valor = 50000 };
-
+            var retirarRequest = new RetirarRequest { NumeroCuenta = "10001", Valor = 50000 };
             var retirarResponse = _retirarService.Ejecutar(retirarRequest);
-
             Assert.AreEqual($"Su Nuevo saldo es 50000.", retirarResponse.Mensaje);
         }
 
@@ -77,23 +64,21 @@ namespace Application.Test
         [Test]
         public void CrearCuentaCorrienteTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1114", Nombre = "aaaaa", TipoCuenta = "Corriente" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10002", Nombre = "Cuenta Ejemplo", TipoCuenta = "Corriente" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
-            Assert.AreEqual("Se creó con exito la cuenta 1114.", createResponse.Mensaje);
+            Assert.AreEqual("Se creó con exito la cuenta 10002.", createResponse.Mensaje);
         }
 
         [Test]
         public void ConsignarCuentaCorrienteTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1114", Nombre = "aaaaa", TipoCuenta = "Corriente" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10002", Nombre = "Cuenta Ejemplo", TipoCuenta = "Corriente" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
-            //Consignacion
+            
             ConsignarService _consignarService = new ConsignarService(new UnitOfWork(_context));
-            var consignarRequest = new ConsignarRequest { NumeroCuenta = "1114", Ciudad = "Valledupar", Valor = 100000 };
+            var consignarRequest = new ConsignarRequest { NumeroCuenta = "10002", Ciudad = "Valledupar", Valor = 100000 };
             var consignarResponse = _consignarService.Ejecutar(consignarRequest);
             Assert.AreEqual($"Su Nuevo saldo es {consignarRequest.Valor}.", consignarResponse.Mensaje);
         }
@@ -101,24 +86,17 @@ namespace Application.Test
         [Test]
         public void RetirarCuentaCorrienteTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1114", Nombre = "aaaaa", TipoCuenta = "Corriente" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10002", Nombre = "Cuenta Ejemplo", TipoCuenta = "Corriente" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
-
             _createService.Ejecutar(createRequest);
 
-            //Consignacion
             ConsignarService _consignarService = new ConsignarService(new UnitOfWork(_context));
-            var consignarRequest = new ConsignarRequest { NumeroCuenta = "1114", Ciudad = "Valledupar", Valor = 100000 };
-
+            var consignarRequest = new ConsignarRequest { NumeroCuenta = "10002", Ciudad = "Valledupar", Valor = 100000 };
             _consignarService.Ejecutar(consignarRequest);
 
-            //Retiro
             RetirarService _retirarService = new RetirarService(new UnitOfWork(_context));
-            var retirarRequest = new RetirarRequest { NumeroCuenta = "1114", Valor = 50000 };
-
+            var retirarRequest = new RetirarRequest { NumeroCuenta = "10002", Valor = 50000 };
             var retirarResponse = _retirarService.Ejecutar(retirarRequest);
-
             Assert.AreEqual($"Su Nuevo saldo es 49800.", retirarResponse.Mensaje);
         }
 
@@ -129,25 +107,21 @@ namespace Application.Test
         [Test]
         public void CrearCuentaCreditoTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1115", Nombre = "aaaaa", TipoCuenta = "Credito" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10003", Nombre = "Cuenta Ejemplo", TipoCuenta = "Credito" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
-            Assert.AreEqual("Se creó con exito la cuenta 1115.", createResponse.Mensaje);
+            Assert.AreEqual("Se creó con exito la cuenta 10003.", createResponse.Mensaje);
         }
 
         [Test]
         public void RetirarCuentaCreditoTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1115", Nombre = "aaaaa", TipoCuenta = "Credito" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10003", Nombre = "Cuenta Ejemplo", TipoCuenta = "Credito" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
 
-            //Retiro
             RetirarService _retirarService = new RetirarService(new UnitOfWork(_context));
-            var retirarRequest = new RetirarRequest { NumeroCuenta = "1115", Valor = 300000 };
-
+            var retirarRequest = new RetirarRequest { NumeroCuenta = "10003", Valor = 300000 };
             var retirarResponse = _retirarService.Ejecutar(retirarRequest);
             Assert.AreEqual($"Su Nuevo saldo es 700000.", retirarResponse.Mensaje);
         }
@@ -155,23 +129,17 @@ namespace Application.Test
         [Test]
         public void ConsignarCuentaCreditoTest()
         {
-            //Creacion
-            var createRequest = new CrearCuentaBancariaRequest { Numero = "1115", Nombre = "aaaaa", TipoCuenta = "Credito" };
+            var createRequest = new CrearCuentaBancariaRequest { Numero = "10003", Nombre = "Cuenta Ejemplo", TipoCuenta = "Credito" };
             CrearCuentaBancariaService _createService = new CrearCuentaBancariaService(new UnitOfWork(_context));
             var createResponse = _createService.Ejecutar(createRequest);
 
-            //Retiro
             RetirarService _retirarService = new RetirarService(new UnitOfWork(_context));
-            var retirarRequest = new RetirarRequest { NumeroCuenta = "1115", Valor = 300000 };
-
+            var retirarRequest = new RetirarRequest { NumeroCuenta = "10003", Valor = 300000 };
             var retirarResponse = _retirarService.Ejecutar(retirarRequest);
 
-            //Consignacion
             ConsignarService _consignarService = new ConsignarService(new UnitOfWork(_context));
-            var consignarRequest = new ConsignarRequest { NumeroCuenta = "1115", Ciudad = "Valledupar", Valor = 200000 };
-
+            var consignarRequest = new ConsignarRequest { NumeroCuenta = "10003", Ciudad = "Valledupar", Valor = 200000 };
             var consignarResponse = _consignarService.Ejecutar(consignarRequest);
-
             Assert.AreEqual($"Su Nuevo saldo es 900000.", consignarResponse.Mensaje);
         }       
 
