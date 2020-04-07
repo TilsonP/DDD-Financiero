@@ -12,9 +12,10 @@ namespace Application.Test
         [SetUp]
         public void Setup()
         {
-            var optionsInMemory = new DbContextOptionsBuilder<BancoContext>().UseInMemoryDatabase("Banco").Options;
+            var optionsSqlServer = new DbContextOptionsBuilder<BancoContext>()
+            .UseSqlServer("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;").Options;
 
-            _context = new BancoContext(optionsInMemory);            
+            _context = new BancoContext(optionsSqlServer);            
         }
 
         #region Tests Cuentas de Ahorro

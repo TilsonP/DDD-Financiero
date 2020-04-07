@@ -41,6 +41,8 @@ namespace Application
         public string Nombre { get; set; }
         public string TipoCuenta { get; set; }
         public string Numero { get; set; }
+        public int periodo { get; set; }
+        public double TasaInteres { get; set; }
     }
     public class CrearDepositoResponse
     {
